@@ -6,7 +6,7 @@
 <div class="wrapper">
   <fieldset>
     <div class="flexchildren">
-      <p class="fieldname"><span class="label">test n{fieldName}</span></p>
+      <p class="fieldname"><span class="label">{fieldName}</span></p>
       <div class="fieldvalue">
         <input class="value" value={fieldValue} />
       </div>
