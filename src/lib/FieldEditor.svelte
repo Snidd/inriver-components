@@ -1,6 +1,27 @@
 <script lang="ts">
   export let fieldName: string;
-  export let fieldValue: string;
+  export let fieldValue:
+    | Record<string, string>
+    | string[]
+    | string
+    | number
+    | undefined;
+
+  export let language: string = "en";
+
+  let displayValue: string;
+
+  if (typeof fieldValue === "string") {
+    displayValue = fieldValue;
+  } else if (typeof fieldValue === "number") {
+    displayValue = fieldValue.toString();
+  } else if (Array.isArray(fieldValue)) {
+    displayValue = fieldValue.join(";");
+  } else if (fieldValue === undefined) {
+    displayValue = "";
+  } else {
+    displayValue = fieldValue[language];
+  }
 </script>
 
 <div class="wrapper">
@@ -8,7 +29,7 @@
     <div class="flexchildren">
       <p class="fieldname"><span class="label">{fieldName}</span></p>
       <div class="fieldvalue">
-        <input class="value" value={fieldValue} />
+        <input class="value" value={displayValue} />
       </div>
     </div>
   </fieldset>
