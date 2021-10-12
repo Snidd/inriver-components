@@ -1,6 +1,6 @@
 <script lang="ts">
-  export let fieldName: string;
-  export let fieldValue:
+  export let name: string;
+  export let value:
     | Record<string, string>
     | string[]
     | string
@@ -8,28 +8,31 @@
     | undefined;
 
   export let language: string = "en";
-
-  let displayValue: string;
-
-  if (typeof fieldValue === "string") {
-    displayValue = fieldValue;
-  } else if (typeof fieldValue === "number") {
-    displayValue = fieldValue.toString();
-  } else if (Array.isArray(fieldValue)) {
-    displayValue = fieldValue.join(";");
-  } else if (fieldValue === undefined) {
-    displayValue = "";
-  } else {
-    displayValue = fieldValue[language];
+  
+  if (typeof value === "string") {
+    value = value;
+  } else if (typeof value === "number") {
+    value = value.toString();
+  } else if (value === undefined) {
+    value = "";
   }
+  console.log(value);
 </script>
 
 <div class="wrapper">
   <fieldset>
     <div class="flexchildren">
-      <p class="fieldname"><span class="label">{fieldName}</span></p>
+      <p class="fieldname"><span class="label">{name}</span></p>
       <div class="fieldvalue">
-        <input class="value" value={displayValue} />
+        {#if typeof value === "string"}
+          <input class="value" bind:value />
+        {/if}
+        {#if Array.isArray(value)}
+          <input class="value" bind:value={value.join(";")} />
+        {/if}
+        {#if value.hasOwnProperty(language)}
+        <input class="value" bind:value={value[language]} />
+        {/if}
       </div>
     </div>
   </fieldset>
