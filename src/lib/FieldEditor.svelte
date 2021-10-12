@@ -36,6 +36,11 @@
 </div>
 
 <style>
+  :root {
+    font-family: "Nunito Sans", Helvetica, Arial, sans-serif;
+    line-height: 21px;
+    font-size: 14px;
+  }
   fieldset {
     margin: 0;
     padding: 0;
