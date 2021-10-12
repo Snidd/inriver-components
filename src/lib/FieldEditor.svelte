@@ -28,7 +28,7 @@
           <input class="value" bind:value />
         {/if}
         {#if Array.isArray(value)}
-          <input class="value" bind:value={value.join(";")} />
+          <input class="value" value={value.join(";")}/>
         {/if}
         {#if value.hasOwnProperty(language)}
         <input class="value" bind:value={value[language]} />
